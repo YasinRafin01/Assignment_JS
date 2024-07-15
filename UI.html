@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Airbnb</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <div class="search-menu">
+          <a href="#anywhere" id="anywhereLink">Anywhere</a>
+          <a href="#any-week" id="anyweekLink">Any week</a>
+          <a href="#add-guests" id="addGuest">Add guests</a>
+          <a href="#search"
+            ><img
+              src="https://cdn4.iconfinder.com/data/icons/web-icons-19/711/search-icon-tm-512.png"
+              alt="Search"
+          /></a>
+        </div>
+        <img
+          src="https://cdn2.iconfinder.com/data/icons/thin-line-icons-for-seo-and-development-1/64/SEO_international-512.png"
+          style="
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-left: 290px;
+          "
+          alt="globe"
+        />
+        <div class="user-menu">
+          <span>☰</span>
+          <img
+            src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png"
+            alt="User"
+          />
+        </div>
+      </nav>
+      <div class="destination-search" id="destinationSearch">
+        <div class="navbar" id="navbar">
+          <span class="navbar-item" id="whereButton"
+            >Where<br /><span style="color: slategray" id="dest"
+              >Search Destination</span
+            ></span
+          >
+          <span class="navbar-item" id="checkIn"
+            >Check in<br /><span style="color: slategray" id="time"
+              >Add Dates</span
+            ></span
+          >
+          <span class="navbar-item" id="checkOut"
+            >Check out<br /><span style="color: slategray" id="time1"
+              >Add Dates</span
+            ></span
+          >
+          <span class="navbar-item" id="guest-input">Who<br/><span style="color: slategray;" id="guest-input1">Add guests</span></span>
+          <button class="search-button">Search</button>
+        </div>
+
+        <div class="region-grid" id="regionGrid"></div>
+      </div>
+
+      <!--Adding check in and check out UI-->
+      <div class="date-picker" id="datePicker">
+        <div class="date-picker-header">
+
+          <div>
+            
+            <button class="date-range-option" data-days="">Exact dates</button>
+            <button class="date-range-option" data-days="±1">± 1 day</button>
+            <button class="date-range-option selected" data-days="±2">
+              ± 2 days
+            </button>
+            <button class="date-range-option" data-days="±3">± 3 days</button>
+            <button class="date-range-option" data-days="±7">± 7 days</button>
+            
+          </div>
+        </div>
+        <div class="button-container">
+          <button id="prevMonth" class="styled-button">Previous</button>
+          <button id="nextMonth" class="styled-button">Next</button>
+        </div>
+        <div class="date-picker-body" id="datePickerBody"></div>
+      </div>
+
+      <!--adding guest functionality-->
+      <div class="guest-selector-modal" id="guest-selector">
+        <div class="guest-type">
+            <div class="guest-info">
+                <span class="guest-label">Adults</span>
+                <span class="guest-age">Ages 13 or above</span>
+            </div>
+            <div class="guest-controls">
+                <button class="decrement" data-type="adults">-</button>
+                <span class="count" data-type="adults">0</span>
+                <button class="increment" data-type="adults">+</button>
+            </div>
+        </div>
+        <div class="guest-type">
+            <div class="guest-info">
+                <span class="guest-label">Children</span>
+                <span class="guest-age">Ages 2 – 12</span>
+            </div>
+            <div class="guest-controls">
+                <button class="decrement" data-type="children">-</button>
+                <span class="count" data-type="children">0</span>
+                <button class="increment" data-type="children">+</button>
+            </div>
+        </div>
+        <div class="guest-type">
+            <div class="guest-info">
+                <span class="guest-label">Infants</span>
+                <span class="guest-age">Under 2</span>
+            </div>
+            <div class="guest-controls">
+                <button class="decrement" data-type="infants">-</button>
+                <span class="count" data-type="infants">0</span>
+                <button class="increment" data-type="infants">+</button>
+            </div>
+        </div>
+        <div class="guest-type">
+            <div class="guest-info">
+                <span class="guest-label">Pets</span>
+                <span class="guest-age">Bringing a service animal?</span>
+            </div>
+            <div class="guest-controls">
+                <button class="decrement" data-type="pets">-</button>
+                <span class="count" data-type="pets">0</span>
+                <button class="increment" data-type="pets">+</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    </header>
+    <div class="title-bar">
+      <h1><b>Comfy New Apt. in Pueblo Libre!</b></h1>
+      <div class="options">
+        <span class="option"
+          ><img
+            src="https://cdn3.iconfinder.com/data/icons/feather-5/24/share-256.png"
+            alt="Share Icon"
+            style="width: 20px; height: 20px"
+          />
+          <span class="option-text" id="openModalBtn" onclick="transferText()">Share</span
+        >
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <!-- Making the save icon red-->
+        <span class="option"
+          ><span class="icon" id="saveIcon">&#9825;</span>
+          <span class="option-text">Save</span></span
+        >
+      </div>
+
+      <!--Making the share modal-->
+
+    </div>
+
+    <main>
+      <section class="image-gallery">
+        <!-- Add your images here -->
+        <div class="main-image">
+          <img
+            src="https://media.istockphoto.com/id/1390233984/photo/modern-luxury-bedroom.jpg?s=612x612&w=0&k=20&c=po91poqYoQTbHUpO1LD1HcxCFZVpRG-loAMWZT7YRe4="
+            alt="Apartment view 1"
+          />
+        </div>
+        <div class="side-images">
+          <div class="side-row">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQP0ASYhu75T34l5TcUAof4KptA2g6eCspVtg&s"
+              alt="Apartment view 2"
+              style="width: 200px; height: 200px"
+            />
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaA0SQ7Ppc6ugXeLjXm7gMqlUERCgafx1s8A&s"
+              alt="Apartment view 3"
+              style="width: 200px; height: 200px"
+            />
+          </div>
+          <div class="side-row">
+            <img
+              src="https://homesmart.sg/wp-content/uploads/2022/01/Smart-Digital-Lock-A100-1024x1024.jpg"
+              alt="Apartment view 4"
+              style="width: 200px; height: 200px"
+            />
+            <div class="overlay" id="showAllPhotos">
+              <div class="box">
+                <p>Show all photos</p>
+              </div>
+            </div>
+            <img
+              src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEyL3AtNDY4LXBtLTEyNjktMDQtbW9ja3VwLmpwZw.jpg"
+              alt="Your Image"
+              style="width: 200px; height: 200px"
+            />
+          </div>
+        </div>
+      </section>
+      <!--Making the share modal-->
+      <div id="shareModal" class="modal-overlay1">
+        <div class="modal1">
+            <div class="modal-header1">
+                <h3>Share this place</h3>
+                <button class="close-btn" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="share-item">
+                <span id="destination1">Rental unit in Lima</span> • New: <span id="destination2"></span> • 1 bedroom • 1 bed • 1 bath
+            </div>
+            <div class="share-options">
+                <button class="share-option" id="copyLinkBtn"><i class="fas fa-link"></i><img src="https://cdn0.iconfinder.com/data/icons/ui-essentials-vol-1/40/copy_link-512.png" style="width: 20px; height: 20px;"> Copy Link</button>
+                <button class="share-option"><i class="fas fa-envelope"></i><img src="https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/envelope-512.png" style="width: 20px; height: 20px;">  Email</button>
+                <button class="share-option"><i class="fas fa-comment"></i><img src="https://cdn0.iconfinder.com/data/icons/typicons-2/24/messages-512.png" style="width: 20px; height: 20px;"> Messages</button>
+                <button class="share-option"><i class="fab fa-facebook-messenger"></i><img src="https://cdn1.iconfinder.com/data/icons/social-media-circle-7/512/Circled_Messenger_svg3-512.png" style="width: 20px; height: 20px;"> Messenger</button>
+                <button class="share-option"><i class="fab fa-facebook"></i><img src="https://cdn3.iconfinder.com/data/icons/social-media-2253/17/Vector-2-512.png" style="width: 20px; height: 20px;"> Facebook</button>
+                <button class="share-option"><i class="fab fa-twitter"></i><img src="https://cdn3.iconfinder.com/data/icons/picons-social/57/43-twitter-512.png" style="width: 20px; height: 20px;"> Twitter</button>
+            </div>
+        </div>
+    </div>
+      <!--Image gallery UI-->
+      <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="navigation">
+            <span class="nav-button" id="prevButton">&#10094;</span>
+            <span class="nav-button" id="nextButton">&#10095;</span>
+        </div>
+        <div class="image-counter" id="imageCounter"></div>
+    </div>
+      <section class="listing-header">
+        <div class="info">
+          <span
+             id="source1"><h2><bold>Entire rental unit in Lima, Peru</bold></h2></span
+          >
+          <span>2 guests · 1 bedroom · 1 bed · 1 bath</span><br />
+          <span
+            ><img
+              src="https://cdn3.iconfinder.com/data/icons/star-accents/32/star-set-expand-app-22-256.png"
+              style="width: 16px; height: 16px"
+            />New</span
+          >
+        </div>
+      </section>
+      <section class="host-details">
+        <div class="host-info">
+          <div class="host-avatar">
+            <img
+              src="https://t4.ftcdn.net/jpg/02/24/86/95/360_F_224869519_aRaeLneqALfPNBzg0xxMZXghtvBXkfIA.jpg"
+              alt="Host"
+              style="width: 50px; height: 50px"
+            />
+          </div>
+          <div class="host-description">
+            <h4>Hosted by Fernanda</h4>
+            <span>Superhost · 7 years hosting</span>
+          </div>
+        </div>
+        <div
+          class="check-availability"
+          style="box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1)"
+        >
+          <h3>Add dates for prices</h3>
+          <form>
+            <label for="check-in">Check-in</label>
+            <input type="date" id="check-in" name="check-in" />
+            <label for="check-out">Check-out</label>
+            <input type="date" id="check-out" name="check-out" />
+            <label for="guests">Guests</label>
+            <select id="guests" name="guests">
+              <option value="1">1 guest</option>
+              <option value="2">2 guests</option>
+            </select>
+            <button type="submit" class="button button1">
+              Check availability
+            </button>
+          </form>
+        </div>
+      </section>
+      <section class="host-info1">
+        <div class="info-item">
+          <img
+            src="https://cdn0.iconfinder.com/data/icons/ui-interface-6/24/check-in-box-1-512.png"
+            alt="Self check-in"
+            class="info-img"
+          />
+          <div class="info-text">
+            <h3>Self check-in</h3>
+            <p style="font-size: small">
+              Check yourself in with the smart lock
+            </p>
+          </div>
+        </div>
+        <br />
+        <div class="host-card1">
+          <img
+            src="https://cdn3.iconfinder.com/data/icons/font-awesome-solid/512/id-badge-512.png"
+            alt="Host"
+            class="host-img"
+          />
+          <div class="host-text">
+            <h4>Fernando is a Superhost</h4>
+            <p style="font-size: small">
+              Superhosts are experienced, highly rated Hosts.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section class="translation-info">
+        <p class="translation-message">
+          Some info has been automatically translated.
+          <a href="#">Show original</a>
+        </p>
+        <div class="description">
+          <p>
+            Welcome to our brand-new 1 bedroom apartment, in a quiet and central
+            location next to a park!
+          </p>
+          <p>
+            It's conveniently located in Pueblo Libre, just 25min. away from the
+            airport. Steps away from Clinica Stella Maris, Universidad Antonio
+            Ruiz de Montoya, Instituto Británico, Hospital Santa Rosa, YMCA Peru
+            and Alas Peruanas University. It's also very close to La ...
+          </p>
+          <a href="#" class="show-more">Show more &gt;</a>
+        </div>
+      </section>
+
+      <section class="sleeping-area">
+        <h2>Where you'll sleep</h2>
+        <img
+          src="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTEyL3AtNDY4LXBtLTEyNjktMDQtbW9ja3VwLmpwZw.jpg"
+          alt="Bedroom"
+        />
+        <h3>Bedroom</h3>
+        <p>1 double bed</p>
+      </section>
+      <hr class="section-divider1" />
+      <section class="amenities">
+        <h2>What this place offers</h2>
+        <div class="amenities-list">
+          <div class="amenity">
+            <img
+              src="https://cdn0.iconfinder.com/data/icons/kitchen-utensil-set/128/Cloche_food_kitchen_restaurant_icon-512.png"
+              alt="Kitchen"
+            />
+            Kitchen
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn1.iconfinder.com/data/icons/ionicons-fill-vol-2/512/wifi-512.png"
+              alt="WiFi"
+            />
+            WiFi
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/tv-512.png"
+              alt="TV"
+            />
+            TV
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn0.iconfinder.com/data/icons/hotel-services-48/64/__8._elevator-512.png"
+              alt="Elevator"
+            />
+            Elevator
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/outline-amenities-icon-set/64/Washer-512.png"
+              alt="Washer"
+            />
+            Washer
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/hand-drawn-house-appliances/200/drying-machine-512.png"
+              alt="Dryer"
+            />
+            Dryer
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn1.iconfinder.com/data/icons/electronics-outline-24/24/hair_dryer_blow_dryer_hair_heater_hair_styling_salon_electricals_1-512.png"
+              alt="Hair dryer"
+            />
+            Hair dryer
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn1.iconfinder.com/data/icons/amenities-solid-ii/48/_refrigerator2-512.png"
+              alt="Refrigerator"
+            />
+            Refrigerator
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/basic-ui-112/52/Icon-Status-Error-2-512.png"
+              alt="Hair dryer"
+            /><del> Carbon monoxide alarm</del>
+          </div>
+          <div class="amenity">
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/say-no-to-war-2/32/nuclear-bomb-explosion-thunderball-smoke-cloud-war-512.png"
+              alt="Refrigerator"
+            />
+            <del>Smoke alarm</del>
+          </div>
+        </div>
+        <button class="show-all-btn">Show all 32 amenities</button>
+      </section>
+      <hr class="section-divider1" />
+      <section class="calendar">
+        <h2>Select check-in date</h2>
+        <p>Add your travel dates for exact pricing</p>
+
+        <div class="calendar-month" id="july-calendar">
+          <h3>July 2024</h3>
+          <div class="calendar-header">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+          </div>
+          <div class="calendar-grid">
+            <!-- Days for July -->
+            <!-- Example: Generate calendar days using JavaScript or server-side logic -->
+            <!-- For demonstration, we'll manually add days here -->
+            <!-- You can adjust the number of days based on the actual month -->
+            <div class="calendar-day">1</div>
+            <div class="calendar-day">2</div>
+            <div class="calendar-day">3</div>
+            <div class="calendar-day">4</div>
+            <div class="calendar-day">5</div>
+            <div class="calendar-day">6</div>
+            <div class="calendar-day">7</div>
+            <div class="calendar-day">8</div>
+            <div class="calendar-day">9</div>
+            <div class="calendar-day">10</div>
+            <div class="calendar-day">11</div>
+            <div class="calendar-day">12</div>
+            <div class="calendar-day">13</div>
+            <div class="calendar-day">14</div>
+            <div class="calendar-day">15</div>
+            <div class="calendar-day">16</div>
+            <div class="calendar-day">17</div>
+            <div class="calendar-day">18</div>
+            <div class="calendar-day">19</div>
+            <div class="calendar-day">20</div>
+            <div class="calendar-day">21</div>
+            <div class="calendar-day">22</div>
+            <div class="calendar-day">23</div>
+            <div class="calendar-day">24</div>
+            <div class="calendar-day">25</div>
+            <div class="calendar-day">26</div>
+            <div class="calendar-day">27</div>
+            <div class="calendar-day">28</div>
+            <div class="calendar-day">29</div>
+            <div class="calendar-day">30</div>
+            <div class="calendar-day">31</div>
+            <!-- ... Add more days as needed -->
+          </div>
+        </div>
+
+        <div class="calendar-month" id="august-calendar">
+          <h3>August 2024</h3>
+          <div class="calendar-header">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+          </div>
+          <div class="calendar-grid">
+            <div class="calendar-day">1</div>
+            <div class="calendar-day">2</div>
+            <div class="calendar-day">3</div>
+            <div class="calendar-day">4</div>
+            <div class="calendar-day">5</div>
+            <div class="calendar-day">6</div>
+            <div class="calendar-day">7</div>
+            <div class="calendar-day">8</div>
+            <div class="calendar-day">9</div>
+            <div class="calendar-day">10</div>
+            <div class="calendar-day">11</div>
+            <div class="calendar-day">12</div>
+            <div class="calendar-day">13</div>
+            <div class="calendar-day">14</div>
+            <div class="calendar-day">15</div>
+            <div class="calendar-day">16</div>
+            <div class="calendar-day">17</div>
+            <div class="calendar-day">18</div>
+            <div class="calendar-day">19</div>
+            <div class="calendar-day">20</div>
+            <div class="calendar-day">21</div>
+            <div class="calendar-day">22</div>
+            <div class="calendar-day">23</div>
+            <div class="calendar-day">24</div>
+            <div class="calendar-day">25</div>
+            <div class="calendar-day">26</div>
+            <div class="calendar-day">27</div>
+            <div class="calendar-day">28</div>
+            <div class="calendar-day">29</div>
+            <div class="calendar-day">30</div>
+            <!-- ... Add more days as needed -->
+          </div>
+        </div>
+
+        <div class="calendar-actions">
+          <button>Clear dates</button>
+          <button>Close</button>
+        </div>
+      </section>
+      <hr class="section-divider2" />
+      <section class="section reviews">
+        <h2>No reviews (yet)</h2>
+        <div class="reviews">
+          <p>
+            <img
+              src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/star-512.png"
+              alt="Star"
+            />This host has 310 reviews for other places to stay.
+            <span class="show-more">Show other reviews</span>
+          </p>
+        </div>
+      </section>
+      <hr class="section-divider2" />
+      <section>
+        <h2>Where you'll be</h2>
+        <p>Lima, Provincia de Lima, Peru</p>
+        <div class="map-container">
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5DcQfjQw957b7HN7Ha8bKfk7ry9yEXzEWc9IQEz11YZTGDpvER8_MhQ9Dv82p3fb_UTc&usqp=CAU"
+            alt="Map of Lima"
+          />
+        </div>
+        <p class="show-more">Show more &gt;</p>
+      </section>
+      <hr class="section-divider2" />
+      <section class="host-section">
+        <h2>Meet your Host</h2>
+        <div class="host-content">
+          <div class="host-column">
+            <div class="host-card">
+              <div class="host-info2">
+                <div class="host-image-container">
+                  <img
+                    src="https://t4.ftcdn.net/jpg/02/14/74/61/360_F_214746128_31JkeaP6rU0NzzzdFC4khGkmqc8noe6h.jpg"
+                    alt="Fernando"
+                    class="host-image"
+                  />
+                </div>
+                <h3 class="host-name">Fernando</h3>
+                <p class="superhost">⭐ Superhost</p>
+              </div>
+              <div class="host-stats">
+                <div class="stat">
+                  <div class="stat-value"><b>310</b></div>
+                  <div class="stat-label">Reviews</div>
+                </div>
+                <hr />
+                <div class="stat">
+                  <div class="stat-value"><b>4.92 ★</b></div>
+                  <div class="stat-label">Rating</div>
+                </div>
+                <hr />
+                <div class="stat">
+                  <div class="stat-value"><b>7</b></div>
+                  <div class="stat-label">Years hosting</div>
+                </div>
+              </div>
+            </div>
+            <div class="host-info2">
+              <img
+                src="https://cdn3.iconfinder.com/data/icons/aging-society/512/old-aging-senior-people-citizen-21-512.png"
+                style="height: 25px; width: 25px"
+                alt="Birthday"
+              />
+              <span>Born in the 80's</span>
+            </div>
+            <div class="host-info2">
+              <img
+                src="https://cdn1.iconfinder.com/data/icons/ui-essential-17/32/UI_Essential_Outline_2_essential-app-ui-work-bag-512.png"
+                style="height: 20px; width: 20px"
+                alt="Work"
+              />
+              <span>My work: Hospitality</span>
+            </div>
+            <p style="font-size: small">
+              Hello world! I love traveling and I also love welcoming guests in
+              my home country,<br />
+              Peru, meeting new...
+            </p>
+            <a class="show-more">Show more ></a>
+          </div>
+          <div class="additional-column">
+            <div class="host-status">
+              <p><strong>Fernando is a Superhost</strong></p>
+              <p style="font-size: small">
+                Superhosts are experienced, highly rated hosts who are committed
+                to providing great stays for guests.
+              </p>
+            </div>
+
+            <div class="co-hosts">
+              <h4>Co-hosts</h4>
+              <div class="co-host">
+                <span
+                  ><img
+                    src="data:image/jpeg;base64,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"
+                    style="border-radius: 40%; height: 30px; width: 30px"
+                    alt=""
+                  />
+                  Percy</span
+                >
+              </div>
+              <div class="co-host">
+                <span
+                  ><img
+                    src="data:image/jpeg;base64,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"
+                    style="border-radius: 40%; height: 30px; width: 30px"
+                    alt=""
+                  />Raul</span
+                >
+              </div>
+            </div>
+
+            <div class="host-details1">
+              <h4>Host details</h4>
+              <p style="font-size: small">Response rate: 100%</p>
+              <p style="font-size: small">Responds within an hour</p>
+            </div>
+
+            <div class="message-host">
+              <button>Message Host</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <br />
+      <section class="things-to-know">
+        <h2>Things to know</h2>
+        <div class="content">
+          <div class="column">
+            <h3>House rules</h3>
+            <p style="font-size: small">Check-in after 4:00 PM</p>
+            <p style="font-size: small">Checkout before 11:00 AM</p>
+            <p style="font-size: small">2 guests maximum</p>
+            <a href="#">Show more ></a>
+          </div>
+          <div class="column">
+            <h3>Safety & property</h3>
+            <p style="font-size: small">Carbon monoxide alarm not reported</p>
+            <p style="font-size: small">Smoke alarm not reported</p>
+            <p style="font-size: small">
+              Not suitable for children and infants
+            </p>
+            <a href="#">Show more ></a>
+          </div>
+          <div class="column">
+            <h3>Cancellation policy</h3>
+            <p style="font-size: small">
+              Add your trip dates to get the cancellation details for this stay.
+            </p>
+            <a href="#">Add dates ></a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="breadcrumb">
+        <a href="#"> &nbsp; &nbsp;Peru</a> &gt;
+        <a href="#">Lima Province</a> &gt; <a href="#">Jesús María</a>
+      </div>
+      <hr class="section-divider2" />
+      <div class="explore-options">
+        <h3>&nbsp;&nbsp;Explore other options in and around Lima</h3>
+        <div class="options">
+          <div>
+            <a href="#"> &nbsp; &nbsp;Cieneguilla</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;Punta Hermosa</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;Asia</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;Chaclacayo</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp;&nbsp;Barranco</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;Santiago de Surco</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;San Isidro</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;San Miguel</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+          <div>
+            <a href="#"> &nbsp; &nbsp;Lunahuaná</a>
+            <p>&nbsp; &nbsp;Vacation rentals</p>
+          </div>
+        </div>
+      </div>
+      <div class="other-stays">
+        <h3>&nbsp; &nbsp;Other types of stays on Airbnb</h3>
+        <div class="stays">
+          <a href="#"> &nbsp; &nbsp;Jesús María vacation rentals</a>
+          <a href="#"> &nbsp; &nbsp;Jesús María monthly stays</a>
+          <a href="#">
+            &nbsp; &nbsp;Apartment vacation rentals in Lima Province</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script src="myScript.js"></script>
+  </body>
+</html>
